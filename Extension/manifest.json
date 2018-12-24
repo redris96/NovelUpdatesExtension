@@ -1,5 +1,5 @@
 {
-  "name": "Novel Updates",
+  "name": "Novel Updates Tracker",
   "version": "1.0",
   "description": "A chrome extension for the site https://www.novelupdates.com/",
   "minimum_chrome_version": "23",
