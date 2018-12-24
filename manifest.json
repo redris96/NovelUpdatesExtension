@@ -1,0 +1,33 @@
+{
+  "name": "Novel Updates",
+  "version": "1.0",
+  "description": "A chrome extension for the site https://www.novelupdates.com/",
+  "minimum_chrome_version": "23",
+  "permissions": ["activeTab", "storage", "tabs", "alarms"],
+  "options_page": "settings.html",
+  "background": {
+    "scripts": ["jquery.min.js", "background.js"],
+    "persistent": false
+  },
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "128": "images/NU.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*.novelupdates.com/series/*",
+        "https://*.novelupdates.com/series/*"
+      ],
+      "js": ["jquery.min.js", "jquery-ui.min.js", "content.js"],
+      "css": ["content.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "icons": {
+      "128": "images/NU.png"
+  },
+  "manifest_version": 2
+}
