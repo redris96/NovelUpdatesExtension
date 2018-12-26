@@ -40,7 +40,7 @@ function subscribe_to_novel() {
 		action: "subsribe",
 		novel_id: novel_id,
 		name: name,
-		latestChap: latestChap
+		latestChap: latestChap,
 		last_read: latestChap
 	}, function(response) {
 		console.log(response);

@@ -168,15 +168,19 @@ function update() {
 }
 
 function set_novel_as_read(key) {
-	chrome.storage.sync.get([key], function(data){
+	var res = key.split("_");
+	var key = "novel_" + res[1];
+	chrome.storage.sync.get(null, function(data){
 		var item = data[key];
-		item.last_read = item.latestChap;
-    var params = {};
-    params[key] = item;
-    chrome.storage.sync.set(params);
+	    chrome.runtime.sendMessage({
+			action: "subsribe",
+			novel_id: item.id,
+			name: item.name,
+			latestChap: item.latestChap,
+			last_read: item.latestChap
+		});
 	});
 
-	var res = key.split("_")
 	localStorage.removeItem("new_"+res[1]);
 
 	chrome.runtime.getBackgroundPage(function(bgp){

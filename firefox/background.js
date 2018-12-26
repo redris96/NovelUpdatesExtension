@@ -41,7 +41,6 @@ chrome.runtime.onMessage.addListener(
 function update_popup_badge_text()
 {
   chrome.storage.sync.get(null, function(items){
-
     var total_new_releases = 0;
     for(var key in items)
     {
@@ -82,14 +81,14 @@ function check_for_new_releases() {
   var total_new_releases = 0; 
   var key;
   var total_new_releases = 0;
-  chrome.storage.sync.getBytesInUse(null, function(bytes_in_use){ 
+  if (items.length == 0) { 
     if (bytes_in_use == 0) {  
       chrome.runtime.sendMessage({
         action : "novel_checks",
         value: 0
       });
     }
-  });
+  }
   Object.keys(items).forEach(function(key, index){
     var novel_checks = localStorage.getItem("novel_checks");
     novel_checks++;

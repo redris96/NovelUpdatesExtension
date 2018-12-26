@@ -2,12 +2,18 @@
   "name": "Novel Updates Tracker",
   "version": "1.0",
   "description": "A chrome extension for the site https://www.novelupdates.com/",
-  "minimum_chrome_version": "23",
-  "permissions": ["activeTab", "storage", "tabs", "alarms"],
-  "options_page": "settings.html",
+  "permissions": ["activeTab", "storage", "tabs", "alarms", "<all_urls>"],
+  "browser_specific_settings": {
+    "gecko": {
+      "id" : "novelupdatestracker@redris.com",
+      "strict_min_version": "48.0"
+    }
+  },
+  "options_ui": {
+    "page" : "settings.html"
+  },
   "background": {
-    "scripts": ["jquery.min.js", "background.js"],
-    "persistent": false
+    "scripts": ["jquery.min.js", "background.js"]
   },
   "browser_action": {
     "default_popup": "popup.html",
@@ -17,14 +23,11 @@
   },
   "content_scripts": [
     {
-      "matches": [
-        "http://*.novelupdates.com/series/*",
-        "https://*.novelupdates.com/series/*"
-      ],
+      "matches": ["*://*.novelupdates.com/series/*"],
       "js": ["jquery.min.js", "jquery-ui.min.js", "content.js"],
       "css": ["content.css"],
       "run_at": "document_end"
-    },
+    }, 
     {
       "matches": ["*://*.novelupdates.com/reading-list/*"],
       "js": ["jquery.min.js", "jquery-ui.min.js", "content_reading.js"],
